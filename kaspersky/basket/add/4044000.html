@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Интернет-магазин Kaspersky</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .success-message {
+      text-align: center;
+      color: rgb(217, 11, 11);
+      margin-top: 10px;
+    }
+
+    .pay-button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .pay-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .pay-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  </style>
+  <script type="text/javascript">
+    function purchaseProduct() {
+      // Get credit card details
+      var cardNumber = document.getElementById("cardNumber").value;
+      var expirationDate = document.getElementById("expirationDate").value;
+      var cvvCode = document.getElementById("cvvCode").value;
+
+      // Check if all fields are filled
+      if (cardNumber === "" || expirationDate === "" || cvvCode === "") {
+        var errorMessage = document.getElementById("errorMessage");
+        errorMessage.innerHTML = "Пожалуйста, заполните все поля.";
+        return;
+      }
+
+      // Hide any previous error messages
+      var errorMessage = document.getElementById("errorMessage");
+      errorMessage.innerHTML = "";
+
+      // Disable the Pay button to prevent multiple clicks
+      var payButton = document.getElementById("payButton");
+      payButton.disabled = true;
+
+      // Generate random delay between 1 and 10 seconds (in milliseconds)
+      var randomDelay = Math.floor(Math.random() * 10000) + 1000;
+
+      // Show success message after the random delay
+      setTimeout(function() {
+        // Display success message
+        var successMessage = document.getElementById("successMessage");
+        successMessage.innerHTML = "Упс! Что-то пошло не так..";
+
+  // Open the URL in a new tab after a short delay
+  setTimeout(function() {
+  // Do nothing
+}, 1500); // Delay of 1.5 seconds
+      }, randomDelay);
+    }
+  </script>
+</head>
+<body>
+  <h1>Kaspersky Internet Security</h1>
+  <p style="text-align: center; font-weight: bold;">Цена: $20.99</p>
+  <form>
+    <!-- Product details and payment information fields go here -->
+    <label for="cardNumber">Номер карты:</label>
+    <input type="text" id="cardNumber" required>
+
+    <label for="expirationDate">Действительна до:</label>
+    <input type="text" id="expirationDate" required>
+
+    <label for="cvvCode">Код CVC/CVV:</label>
+    <input type="text" id="cvvCode" required>
+
+    <div class="pay-button-container">
+      <input type="button" id="payButton" class="pay-button" value="Оплатить" onclick="purchaseProduct()">
+    </div>
+    <p id="errorMessage" class="error-message"></p>
+  </form>
+  <p id="successMessage" class="success-message"></p>
+</body>
+</html>
